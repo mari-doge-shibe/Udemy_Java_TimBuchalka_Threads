@@ -12,15 +12,20 @@ public class Example {
     }
 
     private static int divide() {
-        int x;
+        int x, y;
         try {
             x = getInt();
+            y = getInt();
         } catch(NoSuchElementException e) {
-            x = getInt();
+            throw new ArithmeticException("no suitable input");
         }
-        int y = getInt();
         System.out.println("x is " + x + ", y is " + y);
-        return x / y;
+        try {
+            return x / y;
+        } catch(ArithmeticException e) {
+            throw new ArithmeticException("attempt to divide by zero");
+        }
+
     }
 
     private static int getInt() {
