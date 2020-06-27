@@ -21,6 +21,16 @@ public class Locations implements Map<Integer, Location> {
         } catch(IOException e) {
             System.out.println("In catch block");
             e.printStackTrace();
+        } finally {
+            System.out.println("in finally block");
+            try {
+                if(locFile != null) {
+                    System.out.println("Attempting to close locfile");
+                    locFile.close();
+                }
+            } catch(IOException e) {
+                e.printStackTrace();
+            }
         }
 
     }
