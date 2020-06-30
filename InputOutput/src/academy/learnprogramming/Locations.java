@@ -50,6 +50,9 @@ public class Locations implements Map<Integer, Location> {
                 System.out.println("Imported loc: " + loc + ":" + description);
                 Map<String, Integer> tempExit = new HashMap<>();
                 locations.put(loc, new Location(loc, description, tempExit));
+                // why the Scanner is not closed?
+                // the close method takes care of closing any stream that it was using provided that
+                // the stream object implements the closable interface and the file reader doesn't reader doesn't do that
             }
         } catch(IOException e) {
             e.printStackTrace();
