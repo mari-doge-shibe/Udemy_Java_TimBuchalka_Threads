@@ -6,6 +6,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 
+// Challenge Part 1: Modify the program so that it uses a BufferedReader to read in the locations data.
+
+
 public class Locations implements Map<Integer, Location> {
     private static Map<Integer, Location> locations = new HashMap<Integer, Location>();
 
@@ -26,7 +29,7 @@ public class Locations implements Map<Integer, Location> {
 
     static {
         // challenge: rewrite the code using try with resources
-        try(Scanner scanner = new Scanner(new FileReader("locations_big.txt"))) {
+        try(Scanner scanner = new Scanner(new BufferedReader(new FileReader("locations_big.txt")))) {
             scanner.useDelimiter(",");
             while(scanner.hasNextLine()) {
                 int loc = scanner.nextInt();
