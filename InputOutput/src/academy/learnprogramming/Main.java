@@ -5,6 +5,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+// Challenge Part 2: Modify the main method of the Locations class so that it uses a BufferedWriter to write the data.
+// Open the locations.txt and directions.txt files to check that the data has been written successfully
+// You will then need to make another change to the program to allow for the 0 (Quit) exits before using the newly created files.
+
 public class Main {
     private static Locations locations = new Locations();
 
