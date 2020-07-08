@@ -5,21 +5,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-// Challenge Part 2: Modify the main method of the Locations class so that it uses a BufferedWriter to write the data.
-// Open the locations.txt and directions.txt files to check that the data has been written successfully
-// You will then need to make another change to the program to allow for the 0 (Quit) exits before using the newly created files.
+
 
 public class Main {
     private static Locations locations = new Locations();
 
     public static void main(String[] args) {
-        // Change the program to allow players to type full words, or phrases, then move to the
-        // correct location based upon their input.
-        // The player should be able to type commands such as "Go West", "run South", or just "East"
-        // and the program will move to the appropriate location if there is one.  As at present, an
-        // attempt to move in an invalid direction should print a message and remain in the same place.
-        //
-        // Single letter commands (N, W, S, E, Q) should still be available.
+
 
 	    Scanner scanner = new Scanner(System.in);
 
