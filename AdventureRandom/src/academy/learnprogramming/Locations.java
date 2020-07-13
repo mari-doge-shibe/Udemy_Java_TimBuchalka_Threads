@@ -9,6 +9,7 @@ import java.util.*;
 public class Locations implements Map<Integer, Location> {
     private static Map<Integer, Location> locations = new LinkedHashMap<Integer, Location>();
     private static Map<Integer, IndexRecord> index = new LinkedHashMap<>();
+    private static RandomAccessFile ra;
 
     public static void main(String[] args) throws IOException {
 
@@ -42,6 +43,13 @@ public class Locations implements Map<Integer, Location> {
                 startPointer = (int) rao.getFilePointer();
             }
 
+            rao.seek(indexStart);
+            for(Integer locationID : index.keySet()) {
+                rao.writeInt(locationID);
+                rao.writeInt(index.get(locationID).getStartByte());
+                rao.writeInt(index.get(locationID).getLength());
+            }
+
 
             }
         }
@@ -53,27 +61,32 @@ public class Locations implements Map<Integer, Location> {
     // 4. The final section of the file will contain the location records (the data). It will start at byte 1700
 
     static {
+        try {
 
-        try(ObjectInputStream locFile = new ObjectInputStream(new BufferedInputStream(new FileInputStream("locations.dat")))) {
-            boolean eof = false;
-            while (!eof) {
-                try {
-                    Location location = (Location) locFile.readObject();
-                    System.out.println("Read location " + location.getLocationID() + " : " + location.getDescription());
-                    System.out.println("Found " + location.getExits().size() + " exits");
+        } catch(IOException e) {
 
-                    locations.put(location.getLocationID(), location);
-                } catch (EOFException e) {
-                    eof = true;
-                }
-            }
-        } catch(InvalidClassException e) {
-            System.out.println("InvalidClassException " + e.getMessage());
-        } catch(IOException io) {
-            System.out.println("IO Exception" + io.getMessage());
-        } catch(ClassNotFoundException e) {
-            System.out.println("ClassNotFoundException " + e.getMessage());
         }
+
+//        try(ObjectInputStream locFile = new ObjectInputStream(new BufferedInputStream(new FileInputStream("locations.dat")))) {
+//            boolean eof = false;
+//            while (!eof) {
+//                try {
+//                    Location location = (Location) locFile.readObject();
+//                    System.out.println("Read location " + location.getLocationID() + " : " + location.getDescription());
+//                    System.out.println("Found " + location.getExits().size() + " exits");
+//
+//                    locations.put(location.getLocationID(), location);
+//                } catch (EOFException e) {
+//                    eof = true;
+//                }
+//            }
+//        } catch(InvalidClassException e) {
+//            System.out.println("InvalidClassException " + e.getMessage());
+//        } catch(IOException io) {
+//            System.out.println("IO Exception" + io.getMessage());
+//        } catch(ClassNotFoundException e) {
+//            System.out.println("ClassNotFoundException " + e.getMessage());
+//        }
 
     }
 
