@@ -62,9 +62,21 @@ public class Locations implements Map<Integer, Location> {
 
     static {
         try {
+            ra = new RandomAccessFile("locations_rand.dat", "rwd");
+            int numLocations = ra.readInt();
+            long locationStartPoint = ra.readInt();
+
+            while(ra.getFilePointer() < locationStartPoint) {
+                int locationId = ra.readInt();
+                int locationStart = ra.readInt();
+                int locationLength = ra.readInt();
+
+                IndexRecord record = new IndexRecord(locationStart, locationLength);
+                index.put(locationId, record);
+            }
 
         } catch(IOException e) {
-
+            System.out.println("IOException in static initializer: " + e.getMessage());
         }
 
 //        try(ObjectInputStream locFile = new ObjectInputStream(new BufferedInputStream(new FileInputStream("locations.dat")))) {
