@@ -50,9 +50,8 @@ public class Locations implements Map<Integer, Location> {
                 rao.writeInt(index.get(locationID).getLength());
             }
 
-
-            }
         }
+    }
 
 
     // 1. This first four bytes will contain the number of locations (bytes 0-3)
