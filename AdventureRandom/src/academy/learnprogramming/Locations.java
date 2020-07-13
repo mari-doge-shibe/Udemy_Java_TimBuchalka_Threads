@@ -161,4 +161,10 @@ public class Locations implements Map<Integer, Location> {
     public Set<Entry<Integer, Location>> entrySet() {
         return locations.entrySet();
     }
+
+    public void close() throws IOException {
+        ra.close();
+    }
+
+
 }
