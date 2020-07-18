@@ -17,7 +17,7 @@ public class Main {
 //            FileChannel channel = file.getChannel();
             Path dataPath = FileSystems.getDefault().getPath("data.txt");
             Files.write(dataPath, "\nLine 5".getBytes("UTF-8"), StandardOpenOption.APPEND);
-            List<String> lines = Files.readAllLines(dataPath);
+            List<String> lines = Files.readAllLines(dataPath); // UTF-8 is assumed without specifying it
             for(String line : lines) {
                 System.out.println(line);
             }
