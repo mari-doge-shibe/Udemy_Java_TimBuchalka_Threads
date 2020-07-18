@@ -13,14 +13,15 @@ public class Main {
 
     public static void main(String[] args) {
 	    try {
+
 //            FileInputStream file = new FileInputStream("data.txt");
 //            FileChannel channel = file.getChannel();
-            Path dataPath = FileSystems.getDefault().getPath("data.txt");
-            Files.write(dataPath, "\nLine 5".getBytes("UTF-8"), StandardOpenOption.APPEND);
-            List<String> lines = Files.readAllLines(dataPath); // UTF-8 is assumed without specifying it
-            for(String line : lines) {
-                System.out.println(line);
-            }
+//            Path dataPath = FileSystems.getDefault().getPath("data.txt");
+//            Files.write(dataPath, "\nLine 5".getBytes("UTF-8"), StandardOpenOption.APPEND);
+//            List<String> lines = Files.readAllLines(dataPath); // UTF-8 is assumed without specifying it
+//            for(String line : lines) {
+//                System.out.println(line);
+//            }
 
         } catch(IOException e) {
 	        e.printStackTrace();
