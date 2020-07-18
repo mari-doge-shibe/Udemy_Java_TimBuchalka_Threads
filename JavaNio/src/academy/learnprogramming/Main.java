@@ -16,7 +16,7 @@ public class Main {
 //            FileInputStream file = new FileInputStream("data.txt");
 //            FileChannel channel = file.getChannel();
             Path dataPath = FileSystems.getDefault().getPath("data.txt");
-            Files.write(dataPath, "\nLine 4".getBytes("UTF-8"), StandardOpenOption.APPEND);
+            Files.write(dataPath, "\nLine 5".getBytes("UTF-8"), StandardOpenOption.APPEND);
             List<String> lines = Files.readAllLines(dataPath);
             for(String line : lines) {
                 System.out.println(line);
