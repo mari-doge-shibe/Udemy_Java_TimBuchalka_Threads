@@ -16,7 +16,7 @@ public class Main {
             ByteBuffer buffer = ByteBuffer.allocate(outputBytes.length); // allocate the bytes based on the length
             buffer.put(outputBytes); // copy the contents of the output bytes
 
-
+            buffer.flip(); // this code eliminates the IndexOutOfBoundsException
             int numBytes = binChannel.write(buffer);
             System.out.println("numBytes written was: " + numBytes);
 
