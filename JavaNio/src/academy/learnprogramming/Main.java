@@ -40,14 +40,10 @@ public class Main {
             ra.read(b);
             System.out.println(new String(b));
 
-//            FileInputStream file = new FileInputStream("data.txt");
-//            FileChannel channel = file.getChannel();
-//            Path dataPath = FileSystems.getDefault().getPath("data.txt");
-//            Files.write(dataPath, "\nLine 5".getBytes("UTF-8"), StandardOpenOption.APPEND);
-//            List<String> lines = Files.readAllLines(dataPath); // UTF-8 is assumed without specifying it
-//            for(String line : lines) {
-//                System.out.println(line);
-//            }
+            long int1 = ra.readInt();
+            long int2 = ra.readInt();
+            System.out.println(int1);
+            System.out.println(int2);
 
         } catch(IOException e) {
 	        e.printStackTrace();
