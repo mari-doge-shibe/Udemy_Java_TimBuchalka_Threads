@@ -14,10 +14,10 @@ public class Main {
 
             ByteBuffer buffer = ByteBuffer.allocate(100);
             // chained version
-            byte[] outputBytes = "Hello World!".getBytes();
-            byte[] outputBytes2 = "Nice to meet you".getBytes();
-            buffer.put(outputBytes2).putInt(245).putInt(-98765).put(outputBytes2).putInt(1000);
-            buffer.flip();
+//            byte[] outputBytes = "Hello World!".getBytes();
+//            byte[] outputBytes2 = "Nice to meet you".getBytes();
+//            buffer.put(outputBytes2).putInt(245).putInt(-98765).put(outputBytes2).putInt(1000);
+//            buffer.flip();
 
 //  read(ByteBuffer) - reads bytes beginning at the channel's current position, and after the read,
 //  updates the position accordingly. Note that now we're talking about the channel's position,
@@ -34,14 +34,17 @@ public class Main {
 // size()
 
             // unchained version
-//            byte[] outputBytes = "Hello World!".getBytes();
-//            buffer.put(outputBytes);
-//            buffer.putInt(245);
-//            buffer.putInt(-98765);
-//            byte[] outputBytes2 = "Nice to meet you".getBytes();
-//            buffer.put(outputBytes2);
-//            buffer.putInt(1000);
-//            buffer.flip();
+            byte[] outputBytes = "Hello World!".getBytes();
+            buffer.put(outputBytes);
+            long int1Pos = outputBytes.length; // saving the start position
+            buffer.putInt(245);
+            long int2Pos = int1Pos + Integer.BYTES;
+            buffer.putInt(-98765);
+            byte[] outputBytes2 = "Nice to meet you".getBytes();
+            buffer.put(outputBytes2);
+            long int3Pos = int2Pos + Integer.BYTES + outputBytes2.length;
+            buffer.putInt(1000);
+            buffer.flip();
 
             binChannel.write(buffer);
 
