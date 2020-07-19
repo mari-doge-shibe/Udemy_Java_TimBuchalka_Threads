@@ -27,7 +27,9 @@ public class Main {
             numBytes = binChannel.write(intBuffer);
             System.out.println("numBytes written was: " + numBytes);
 
+            intBuffer.flip();
             intBuffer.putInt(-98765); // cause BufferOverflowException
+            intBuffer.flip();
             numBytes = binChannel.write(intBuffer);
             System.out.println("numBytes written was: " + numBytes);
 
