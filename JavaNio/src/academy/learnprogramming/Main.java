@@ -51,18 +51,23 @@ public class Main {
             RandomAccessFile ra = new RandomAccessFile("data.dat", "rwd");
             FileChannel channel = ra.getChannel();
 
-            ByteBuffer readBuffer = ByteBuffer.allocate(100);
-            channel.read(readBuffer);
-            readBuffer.flip();
-            byte[] inputString = new byte[outputBytes.length];
-            readBuffer.get(inputString);
-            System.out.println("inputString = " + new String(inputString));
-            System.out.println("int1 = " + readBuffer.getInt());
-            System.out.println("int2 = " + readBuffer.getInt());
-            byte[] inputString2 = new byte[outputBytes.length];
-            readBuffer.get(inputString2);
-            System.out.println("inputString2 = " + new String(inputString2));
-            System.out.println("int3 = " + readBuffer.getInt());
+            // read integers in the reverse order
+            ByteBuffer readBuffer = ByteBuffer.allocate(Integer.BYTES);
+
+
+
+//            ByteBuffer readBuffer = ByteBuffer.allocate(100);
+//            channel.read(readBuffer);
+//            readBuffer.flip();
+//            byte[] inputString = new byte[outputBytes.length];
+//            readBuffer.get(inputString);
+//            System.out.println("inputString = " + new String(inputString));
+//            System.out.println("int1 = " + readBuffer.getInt());
+//            System.out.println("int2 = " + readBuffer.getInt());
+//            byte[] inputString2 = new byte[outputBytes.length];
+//            readBuffer.get(inputString2);
+//            System.out.println("inputString2 = " + new String(inputString2));
+//            System.out.println("int3 = " + readBuffer.getInt());
 
 
         } catch (IOException e) {
