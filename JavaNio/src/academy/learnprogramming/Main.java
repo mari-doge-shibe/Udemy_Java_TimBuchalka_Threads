@@ -16,6 +16,7 @@ public class Main {
     public static void main(String[] args) {
 	    try (FileOutputStream binFile = new FileOutputStream("data.dat");
             FileChannel binChannel = binFile.getChannel()) {
+	        
             byte[] outputBytes = "Hello World!".getBytes();
             ByteBuffer buffer = ByteBuffer.wrap(outputBytes);
             int numBytes = binChannel.write(buffer);
