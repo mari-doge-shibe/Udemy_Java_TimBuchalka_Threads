@@ -27,6 +27,10 @@ public class Main {
             numBytes = binChannel.write(intBuffer);
             System.out.println("numBytes written was: " + numBytes);
 
+            intBuffer.putInt(-98765); // cause BufferOverflowException
+            numBytes = binChannel.write(intBuffer);
+            System.out.println("numBytes written was: " + numBytes);
+
 //            FileInputStream file = new FileInputStream("data.txt");
 //            FileChannel channel = file.getChannel();
 //            Path dataPath = FileSystems.getDefault().getPath("data.txt");
