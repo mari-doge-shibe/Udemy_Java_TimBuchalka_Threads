@@ -20,7 +20,7 @@ public class Main {
             byte[] outputBytes2 = "Nice to meet you".getBytes();
             buffer.put(outputBytes2);
             buffer.putInt(1000);
-            buffer.flip();
+//            buffer.flip();
             binChannel.write(buffer);
 //            ByteBuffer buffer = ByteBuffer.allocate(outputBytes.length); // allocate the bytes based on the length
 //            buffer.put(outputBytes); // copy the contents of the output bytes
