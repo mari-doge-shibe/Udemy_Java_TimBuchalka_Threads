@@ -70,39 +70,50 @@ public class Main {
             readBuffer.flip();
 
             System.out.println("int1 = " + readBuffer.getInt());
+
+            RandomAccessFile copyFile = new RandomAccessFile("datacopy.dat", "rw");
+            FileChannel copyChannel = copyFile.getChannel();
+            long numTransferred = copyChannel.transferFrom(channel, 0, channel.size());
+            System.out.println("Num transferred = " + numTransferred);
+
+            channel.close();
+            ra.close();
+            copyChannel.close();
+
+
             // calculate all the start positions
-            byte[] outputString = "Hello, World!".getBytes();
-            long str1Pos = 0;
-            long newInt1Pos = outputString.length;
-            long newInt2Pos = newInt1Pos + Integer.BYTES;
-            byte[] outputString2 = "Nice to meet you".getBytes();
-            long str2Pos = newInt2Pos + Integer.BYTES;
-            long newInt3Pos = str2Pos + outputString2.length;
-
-            // writing the three integer by writing the value to the buffer
-            ByteBuffer intBuffer = ByteBuffer.allocate(Integer.BYTES);
-            intBuffer.putInt(245);
-            intBuffer.flip();
-            binChannel.position(newInt1Pos);
-            binChannel.write(intBuffer);
-
-            // you need to flip the value before writing
-            intBuffer.flip();
-            intBuffer.putInt(-98765);
-            intBuffer.flip();
-            binChannel.position(newInt2Pos);
-            binChannel.write(intBuffer);
-
-            intBuffer.flip();
-            intBuffer.putInt(1000);
-            intBuffer.flip();
-            binChannel.position(newInt3Pos);
-            binChannel.write(intBuffer);
-
-            binChannel.position(str1Pos);
-            binChannel.write(ByteBuffer.wrap(outputString));
-            binChannel.position(str2Pos);
-            binChannel.write(ByteBuffer.wrap(outputString2));
+//            byte[] outputString = "Hello, World!".getBytes();
+//            long str1Pos = 0;
+//            long newInt1Pos = outputString.length;
+//            long newInt2Pos = newInt1Pos + Integer.BYTES;
+//            byte[] outputString2 = "Nice to meet you".getBytes();
+//            long str2Pos = newInt2Pos + Integer.BYTES;
+//            long newInt3Pos = str2Pos + outputString2.length;
+//
+//            // writing the three integer by writing the value to the buffer
+//            ByteBuffer intBuffer = ByteBuffer.allocate(Integer.BYTES);
+//            intBuffer.putInt(245);
+//            intBuffer.flip();
+//            binChannel.position(newInt1Pos);
+//            binChannel.write(intBuffer);
+//
+//            // you need to flip the value before writing
+//            intBuffer.flip();
+//            intBuffer.putInt(-98765);
+//            intBuffer.flip();
+//            binChannel.position(newInt2Pos);
+//            binChannel.write(intBuffer);
+//
+//            intBuffer.flip();
+//            intBuffer.putInt(1000);
+//            intBuffer.flip();
+//            binChannel.position(newInt3Pos);
+//            binChannel.write(intBuffer);
+//
+//            binChannel.position(str1Pos);
+//            binChannel.write(ByteBuffer.wrap(outputString));
+//            binChannel.position(str2Pos);
+//            binChannel.write(ByteBuffer.wrap(outputString2));
 
 
 
