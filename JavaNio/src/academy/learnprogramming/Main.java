@@ -53,6 +53,56 @@ public class Main {
 
             // read integers in the reverse order
             ByteBuffer readBuffer = ByteBuffer.allocate(Integer.BYTES);
+            channel.position(int3Pos);
+            channel.read(readBuffer);
+            readBuffer.flip();
+
+            System.out.println("int3 = " + readBuffer.getInt());
+            readBuffer.flip();
+            channel.position(int2Pos);
+            channel.read(readBuffer);
+            readBuffer.flip();
+
+            System.out.println("int2 = " + readBuffer.getInt());
+            readBuffer.flip();
+            channel.position(int1Pos);
+            channel.read(readBuffer);
+            readBuffer.flip();
+
+            System.out.println("int1 = " + readBuffer.getInt());
+            // calculate all the start positions
+            byte[] outputString = "Hello, World!".getBytes();
+            long str1Pos = 0;
+            long newInt1Pos = outputString.length;
+            long newInt2Pos = newInt1Pos + Integer.BYTES;
+            byte[] outputString2 = "Nice to meet you".getBytes();
+            long str2Pos = newInt2Pos + Integer.BYTES;
+            long newInt3Pos = str2Pos + outputString2.length;
+
+            // writing the three integer by writing the value to the buffer
+            ByteBuffer intBuffer = ByteBuffer.allocate(Integer.BYTES);
+            intBuffer.putInt(245);
+            intBuffer.flip();
+            binChannel.position(newInt1Pos);
+            binChannel.write(intBuffer);
+
+            // you need to flip the value before writing
+            intBuffer.flip();
+            intBuffer.putInt(-98765);
+            intBuffer.flip();
+            binChannel.position(newInt2Pos);
+            binChannel.write(intBuffer);
+
+            intBuffer.flip();
+            intBuffer.putInt(1000);
+            intBuffer.flip();
+            binChannel.position(newInt3Pos);
+            binChannel.write(intBuffer);
+
+            binChannel.position(str1Pos);
+            binChannel.write(ByteBuffer.wrap(outputString));
+            binChannel.position(str2Pos);
+            binChannel.write(ByteBuffer.wrap(outputString2));
 
 
 
