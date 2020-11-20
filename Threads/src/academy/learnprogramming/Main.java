@@ -28,6 +28,6 @@ public class Main {
 
         myRunnableThread.start();
 
-        System.out.println(ANSI_PURPLE + "Hello again from the main thread."); // if no color is specified, the last color is printed
+        System.out.println(ANSI_PURPLE + "Hello again from the main thread"); // if no color is specified, the last color is printed
     }
 }
