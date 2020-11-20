@@ -1,7 +1,6 @@
 package academy.learnprogramming;
 
-import static academy.learnprogramming.ThreadColor.ANSI_GREEN;
-import static academy.learnprogramming.ThreadColor.ANSI_PURPLE;
+import static academy.learnprogramming.ThreadColor.*;
 
 public class Main {
 
@@ -9,6 +8,7 @@ public class Main {
         System.out.println(ANSI_PURPLE + "Hello from the main thread");
 
         Thread anotherThread = new AnotherThread();
+        anotherThread.setName("== Another Thread");
         anotherThread.start();
 
         new Thread() {
@@ -16,6 +16,16 @@ public class Main {
                 System.out.println(ANSI_GREEN + "Hello from the anonymous class thread");
             }
         }.start();
+
+        Thread myRunnableThread = new Thread(new MyRunnable() {
+            @Override
+            public void run() {
+//                super.run();
+                System.out.println(ANSI_RED + "Hello from the anonymous class's implementation");
+            }
+        });
+
+        myRunnableThread.start();
 
         System.out.println(ANSI_PURPLE + "Hello again from the main thread."); // if no color is specified, the last color is printed
     }
